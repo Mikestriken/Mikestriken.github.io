@@ -263,7 +263,7 @@ section > section {
 #batteryGraphicOutput {
     /* Grid Style */
     display: block;
-    width: 10%;
+    width: 50%;
     
     min-width: 0%;
     max-width: 100%;
@@ -273,6 +273,7 @@ section > section {
     margin: 0rem 1rem;
     width: 4rem;
     display: flex;
+    width: 10;
     justify-content: center;
     align-items: center;
 }
