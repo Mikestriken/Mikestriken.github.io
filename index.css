@@ -13,18 +13,21 @@
 
                                         /** Universal Styles **/
 html {
-    font-size: 10px;
+    font-size: 13px;
+    overflow: hidden;
+    background-color: whitesmoke;
 }
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
     text-align: center;
     margin: 0rem;
     text-decoration: underline;
+    font-size: 3rem;
 }
 
 .label {
@@ -35,35 +38,101 @@ h1 {
     /* Positioning */
     display: inline-block;
     margin-left: 1rem;
-    /* position: relative; */
-    /* top: .5rem; */
+    text-align: center;
 
     /* Coloring */
     border: .1rem solid black;
-    background-color: whitesmoke;
+    background-color: white;
 
     /* Sizing */
     min-height: 2rem;
     min-width: 5rem;
 }
 
+.output:not(.figure) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    /* Sizing */
+    min-width: 12rem;
+    min-height: 4rem;
+
+    /* Font */
+    font-weight: bold;
+    font-size: 2rem;
+    color: white;
+
+    /* Border / Background */
+    border-radius: 2rem;
+    background-color: hsl(228, 66%, 47%);
+}
+
+.button:active:not(#openDoorButton, #closeDoorButton, #stopDoorButton) {
+    /* Styling */
+    background-color: hsl(228, 66%, 70%);
+}
+
+                                            /** Header **/
+header {
+    height: 10vh;
+    width: 100vw;
+    background-color: #1c3596;
+}
+
                                         /** Main Container **/
 .container {
     /* Grid Style */
-    display: grid;
-    margin: auto;
-    grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+
+    height: 90vh;
+    width: 100vw;
+
+    /* flex-flow: column wrap; */
+    
+    /* dEFINE */
+    /* grid-template-rows: repeat(2, calc(50vh - 0rem));
+    grid-template-columns: repeat(2, calc(50vw - 0rem));
     grid-template-areas: "dockingStation spot"
-                          "weatherStation weatherStation";
+                         "weatherStation camera"; */
     
     /* Sizing */
     font-size: 2rem;
 }
 
-.container section {
+.container > section {
     /* Alignment */
+
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    
+    /* Style */
+    border: .1rem solid black;
+}
+
+section > section {
     padding: 2rem;
+
+    width: 100%;
+    height: 100%;
+}
+
+/** Sizing for left 3 cells **/
+#spotContainer, #cameraContainer, #weatherStationContainer {
+    /* Sizing */
+    width: 30%;
+}
+
+/** Sizing for right 2 cells **/
+#dockingStationContainer, #messagesContainer {
+    /* Sizing */
+    width: 70%;
 }
 
                                         /** Docking Station Section **/
@@ -71,128 +140,300 @@ h1 {
     /* Grid Style */
     grid-area: dockingStation;
     display: grid;
-    grid-template-rows: 5rem 9rem 5rem 5rem 5rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 4rem repeat(4, 6rem) 5rem;
 
-    /* Border Style */
-    border-right: .1rem solid black;
-    border-bottom: .1rem solid black;
+    row-gap: 2rem;
+    column-gap: 2rem;
+
+    grid-template-areas: "title title title"
+                         "indoorLight stopDoor open"
+                         "outdoorLight stopDoor open"
+                         "fanSpeed stopDoor close"
+                         "fanStop stopDoor close"
+                         "indoorTemp indoorTemp powerStatus";
+                         
+                         
+                         
+                        }
+
+                        #dockingStation > * {
+    /* border: 1px solid red; */
+}
+
+#dockingStation > h1 { grid-area: title; }
+
+#indoorLightButton, #outdoorLightButton #fanSpeedButton, #fanStopButton {
+
+}
+
+#indoorLightButton{ grid-area: indoorLight; }
+
+#outdoorLightButton{ grid-area: outdoorLight; }
+
+#fanSpeedButton { grid-area: fanSpeed; }
+
+#fanStopButton { grid-area: fanStop; }
+
+#stopDoorButton {
+    grid-area: stopDoor;
+    justify-self: center;
+
+    border-radius: 3rem;
+
+    font-size: 7rem;
+    
+    width: 100%;
+    height: 100%;
+    
+    background-color: hsl(0, 100%, 50%);
+}
+
+#stopDoorButton:active {
+    /* background-color: hsl(0, 100%, 30%); */
     
 }
-#door {
+
+#openDoorButton { grid-area: open; font-size: 4rem;}
+
+#openDoorProgress, #closeDoorProgress {
+    /* text-align: center; */
+    background-color: hsl(228, 66%, 47%);
+
     /* Grid Style */
-    display: grid;
-    position: relative;
-    bottom: 1rem;
-    margin: 1rem 0rem;
-    justify-content: center;
-    align-content: center;
+    height: 100%;
+    display: block;
+    width: 10%;
+    
+    min-width: 0%;
+    max-width: 100%;
+    margin: 0rem;
 }
-#internalTemperature, #powerStatus, #chargerStatus {
+
+#closeDoorButton{ grid-area: close; font-size: 4rem;}
+
+#internalTemperature, #powerStatus {
     display: flex;
-    flex-wrap: nowrap;
-    align-content: center;
     margin: 1rem 0rem;
+    justify-self: center;
+    align-content: center;
+
 }
 
-/** door **/
-    /** Sub-Containers **/
-    #door .label {text-align: center;}
-    #doorButtons {
-        display: flex;
-        justify-content: center;
-    }
+#internalTemperature{ grid-area: indoorTemp; }
 
-    /** Button Styling **/
-    #doorButtons button {
-        /* Sizing */
-        margin: 0rem 1rem;
-        min-width: 20rem;
-        min-height: 5rem;
+#powerStatus { grid-area: powerStatus; }
 
-        /* Styling */
-        box-shadow: 0rem .25rem;
-        border-radius: 1rem;
-        background-color: hsl(0, 0%, 96%);
-    }
-    #doorButtons button:active {
-        /* Positioning */
-        position: relative;
-        top: .25rem;
 
-        /* Styling */
-        box-shadow: 0rem 0rem;
-        background-color: hsl(0, 0%, 90%);
-    }
-
-/** Internal Temperature **/
-
-/** Power Status **/
-
-/** Charger Status **/
-
-                                        /** Spot Section **/
+/** Spot Section **/
 #spot {
     /* Grid Style */
     grid-area: spot;
     display: grid;
-    grid-template-rows: repeat(4, 5rem);
+    grid-template-rows: repeat(2, 5rem);
+
+    /* Sizing */
+    /* min-width: 24rem; */
 
     /* Border Style */
-    border-left: .1rem solid black;
-    border-bottom: .1rem solid black;
-}
-#mission, #task, #battery {
-    display: flex;
-    flex-wrap: nowrap;
-    margin: 1rem 0rem;
-    align-content: center;
+    /* border-left: .1rem solid black; */
+    /* border-bottom: .1rem solid black; */
 }
 #battery {
+    display: flex;
     justify-content: center;
+    margin: 1rem 0rem;
 }
 
 /** Battery **/
-#batteryGraphicOutput {
+#batteryGraphicBackground {
     /* Grid Style */
-    display: inline-block;
-
+    display: inline-grid;
+    
+    /* Coloring */
+    border: .1rem solid black;
+    background-color: hsl(0, 0%, 95%);
+    
     /* Battery Style */
-    background-color: lime;
     border: 1;
-    min-width: 6rem;
+    min-width: 10rem;
     min-height: 2rem;
     margin: 0rem;
 }
-#batteryPercentageOutput {
-    display: inline-block;
+#batteryGraphicOutput {
+    /* Grid Style */
+    display: block;
+    width: 10%;
+    
+    min-width: 0%;
+    max-width: 100%;
+    margin: 0rem;
 }
-
-/** Mission Status **/
-
-
-/** Task Status **/
+#batteryPercentageOutput {
+    margin: 0rem 1rem;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
                                         /** Weather Station Section **/
 #weatherStation {
     /* Grid Style */
     grid-area: weatherStation;
     display: grid;
-    grid-template-rows: repeat(5, 5rem);
+    grid-template-rows: repeat(6, 5rem);
 
     /* Border Style */
-    border-top: .1rem solid black;
+    /* border-top: .1rem solid black; */
+    /* border-right: .1rem solid black; */
 }
-#externalTemperature, #windSpeed, #precipitation, #extra {
+
+#externalTemperature, #windSpeed, #precipitation, #pressure, #humidity, #dewPoint {
     display: flex;
-    flex-wrap: nowrap;
     margin: 1rem 0rem;
+    justify-self: left;
     align-content: center;
 }
 
-/** External Temperature **/
+                                        /** Camera Section **/
+#camera {
+    /* Grid Style */
+    grid-area: camera;
+    display: grid;
+    grid-template-rows: 5rem 6rem 6rem;
+    row-gap: 1rem;
+    /* grid-template-rows: 1fr auto; */
+    
+    /* Border Style */
+    /* border-top: .1rem solid black; */
+    /* border-left: .1rem solid black; */
+}
 
-/** Wind Speed **/
+#camera > * {
+    /* Grid Style */
+    margin: .5rem 0rem;
+    
+    /* Grid Content Positioning / Sizing */
+    width: 100%;
+}
 
-/** Precipitation **/
+                                        /** messages Section **/
+#messages{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 5rem 7.5rem;
+    row-gap: 1rem;
 
-/** Weather Output 4 **/
+    grid-template-areas: "title title"
+                         "messageBox clear"
+}
+
+#messages > h1{grid-area: title;}
+
+#messagesTextbox {
+    grid-area: messageBox;
+    display: flex;
+    flex-grow: 1;
+
+    text-align: left;
+
+    padding: 0rem 2rem;
+    /* box-shadow: inset .2rem .2rem rgba(0, 0, 0, 0.3); */
+    /* box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 2px 0px inset; */
+
+    width: 94%;
+    height: 100%;
+
+    border: .1rem solid black;
+
+    background-color: white;
+}
+
+#clearTextboxButton {
+    grid-area: clear;
+    justify-self: center;
+}
+
+/** Media Queries to change layout when screen size gets too small **/
+@media screen and (max-width: 739px) {
+    html {
+        overflow: scroll;
+    }
+    
+    header {
+        display: grid;
+        margin: auto;
+        height: 10vh;
+        width: 108vw;
+        background-color: blue;
+    }
+    
+    .container {
+        /* Grid Style */
+        display: grid;
+        margin: auto;
+        
+        /* Adjust the margin based on the viewport width */
+        /* grid-template-rows: repeat(2, calc(50vh - 0rem));
+        grid-template-columns: repeat(2, calc(50vw - 2rem)); */
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-areas: "dockingStation"
+        "spot"
+        "weatherStation"
+        "camera";
+        
+        /* Sizing */
+        font-size: 2rem;
+    }
+    .container > section {
+        /* Alignment */
+        padding: 2rem;
+        
+        /* Style */
+        border: .1rem solid black;
+        
+        width: 100vw;
+    }
+    
+}
+
+@media screen and (max-height: 620px) and (min-width: 740px) {
+    html {
+        overflow: scroll;
+    }
+
+    header {
+        display: grid;
+        margin: auto;
+        height: 10vh;
+        width: 108vw;
+        background-color: blue;
+    }
+
+    .container {
+        /* Grid Style */
+        display: grid;
+        margin: auto;
+        
+        /* Adjust the margin based on the viewport width */
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-columns: repeat(2, calc(50vw - 0rem));
+        /* grid-template-columns: repeat(2, 1fr); */
+        grid-template-areas: "dockingStation spot"
+        "weatherStation camera";
+        
+        /* Sizing */
+        font-size: 2rem;
+    }
+    .container > section {
+        /* Alignment */
+        padding: 2rem;
+        
+        /* Style */
+        border: .1rem solid black;
+    
+        width: 100vw;
+    }
+}

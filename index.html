@@ -4,90 +4,133 @@
     <!-- Boiler Plate -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dawg House Control</title>
+    <title>Spot (good dawg) House Control</title>
 
     <!-- Links -->
-	<link rel="stylesheet" href="index.css">
+	<link rel="stylesheet" href="./index.css">
+    <script src="./index.js" defer></script>
+    <script src="./indexButtons.js" defer></script>
+    <script src="./indexBatteryGraphic.js" defer></script>
+    <script src="./serverSentEventHandler.js" defer></script>
+    
     
 </head>
+
 <body>
+    <header>
+
+    </header>
     <main class="container">
-        <section id="dockingStation">
-            <h1>Docking Station</h1>
-            
-            <article id="door">
-                <span class="label">Door Controls</span>
-                <div id="doorButtons">
-                    <button class="input" id="openDoorButton">Open</button>
-                    <button class="input" id="closeDoorButton">Close</button>
-                </div>
-            </article>
-
-            <article id="internalTemperature">
-                <span class="label">Internal Temperature:</span>
-                <span class="output" id="internalTemperatureOutput"></span>
-                <span class="label">°C</span>
-            </article>
-
-            <article id="powerStatus">
-                <span class="label">Power:</span>
-                <span class="output" id="powerStatusOutput"></span>
-            </article>
-
-            <article id="chargerStatus">
-                <span class="label">Charger Status:</span>
-                <span class="output" id="chargerStatusOutput"></span>
-            </article>
+        <section id="spotContainer">
+            <section id="spot">
+                <h1>Spot</h1>
+                
+                <article id="battery">
+                    <figure class="figure" id="batteryGraphicBackground">
+                        <figure class="batteryGraphic figure" id="batteryGraphicOutput"></figure>
+                    </figure>
+                    <figcaption id="batteryPercentageOutput"></figcaption>
+                </article>
+            </section>
         </section>
 
-        <section id="spot">
-            <h1>Spot</h1>
-            
-            <article id="battery">
-                <figure class="batteryGraphic output" id="batteryGraphicOutput"></figure>
-                <figcaption class="output" id="batteryPercentageOutput">XX.X%</figcaption>
-            </article>
+        <section id="cameraContainer">
+            <section id="camera">
+                <h1>Camera Views</h1>
+                
+                <button class="input button" id="externalCameraButton">External Camera View</button>
+                <button class="input button" id="internalCameraButton">Internal Camera View</button>
+            </section>
+        </section>
+
+        <section id="weatherStationContainer">
+            <section id="weatherStation">
+                <h1>Weather Station</h1>
+                
+                <article id="externalTemperature">
+                    <span class="label">Outdoor Temperature:</span>
+                    <span class="output" id="externalTemperatureOutput"></span>
+                    <span class="label">&nbsp;°C</span>
+                </article>
     
-            <article id="mission">
-                <span class="label">Current Mission:</span>
-                <span class="output" id="currentMissionOutput"></span>
-            </article>
-
-            <article id="task">
-                <span class="label">Current Task:</span>
-                <span class="output" id="currentTaskOutput"></span>
-            </article>
-        </section>
-        
-        <section id="weatherStation">
-            <h1>Weather Station</h1>
-            
-            <article id="externalTemperature">
-                <span class="label">Temperature:</span>
-                <span class="output" id="externalTemperatureOutput"></span>
-                <span class="label">°C</span>
-            </article>
-
-            <article id="windSpeed">
-                <span class="label">Wind Speed:</span>
-                <span class="output" id="windSpeedOutput"></span>
-                <span class="label">kts</span>
-                <span class="output" id="windDirectionOutput"></span>
-            </article>
-            
-            <article id="precipitation">
-                <span class="label">Precipitation:</span>
-                <span class="output" id="precipitationOutput"></span>
-                <span class="label">in</span>
-            </article>
-            
-            <article id="extra">
-                <span class="label">Weather Output 4:</span>
-                <span class="output" id="extraOutput"></span>
-                <span class="label">unit</span>
-            </article>
+                <article id="windSpeed">
+                    <span class="label">Wind Speed:</span>
+                    <span class="output" id="windSpeedOutput"></span>
+                    <span class="label">&nbsp;kts</span>
+                    <span class="output" id="windDirectionOutput"></span>
+                </article>
+                
+                <!-- <article id="precipitation">
+                    <span class="label">Precipitation:</span>
+                    <span class="output" id="precipitationOutput"></span>
+                    <span class="label">in</span>
+                </article> -->
+                
+                <article id="pressure">
+                    <span class="label">pressure:</span>
+                    <span class="output" id="pressureOutputHG"></span>
+                    <span class="label">&nbsp;inHg</span>
+                    <span class="output" id="pressureOutputBar"></span>
+                    <span class="label">&nbsp;bar</span>
+                </article>
+                
+                <article id="humidity">
+                    <span class="label">humidity:</span>
+                    <span class="output" id="humidityOutput"></span>
+                    <span class="label">&nbsp;%</span>
+                </article>
+                
+                <article id="dewPoint">
+                    <span class="label">Dew Point:</span>
+                    <span class="output" id="dewPointOutput"></span>
+                    <span class="label">&nbsp;°C</span>
+                </article>
+            </section>
         </section>
 
+        <section id="dockingStationContainer">
+            <section id="dockingStation">
+                <h1>Docking Station Controls</h1>
+                
+                <button id="indoorLightButton" class="input button">Indoor Light: Off</button>
+                <button id="outdoorLightButton" class="input button">Outdoor Light: Off</button>
+                <button id="fanSpeedButton" class="input button">Fan Speed: Fast</button>
+                <button id="fanStopButton" class="input button">Fan: Off</button>
+                
+                <button class="input button" id="stopDoorButton">HALT DOOR</button>
+
+                <button class="button" id="openDoorButton">
+                    <figure class="input button" id="openDoorProgress">Open Door</figure>
+                </button>
+                <button class="input button" id="closeDoorButton">
+                    <figure id="closeDoorProgress">Close Door</figure>
+                </button>
+    
+                <article id="internalTemperature">
+                    <span class="label">Indoor Temperature:</span>
+                    <span class="output" id="internalTemperatureOutput"></span>
+                    <span class="label">&nbsp;°C</span>
+                </article>
+    
+                <article id="powerStatus">
+                    <span class="label">Power:</span>
+                    <span class="output" id="powerStatusOutput"></span>
+                </article>
+            </section>
+        </section>
+
+        <section id="messagesContainer">
+            <section id="messages">
+                <h1>System Messages</h1>
+                
+                <article id="messagesTextbox">
+                    text<br>text<br>text
+                </article>
+                
+                <button class="input button" id="clearTextboxButton">Clear</button>
+    
+            </section>
+        </section>
     </main>
 </body>
 </html>
