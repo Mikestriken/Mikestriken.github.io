@@ -2,7 +2,10 @@
 // * Get button objects and assign them to aliases
 const openButtonProgress = document.getElementById("openDoorProgress");
 const openButton = document.getElementById("openDoorButton");
+
+const closeButtonProgress = document.getElementById("closeDoorProgress");
 const closeButton = document.getElementById("closeDoorButton");
+
 const stopButton = document.getElementById("stopDoorButton");
 
 // * Basic Fetch Function
@@ -28,26 +31,32 @@ function setReleasedStyle(button) {
     button.style.backgroundColor = 'hsl(228, 66%, 47%)';
 }
 
-// * Define iterator variable
-let i = 0;
-
-// * Define graphic update logic
-function updateOpenProgress() {
-    if (i <= 100) {
-        openButtonProgress.style.width = i + '%';
-        i++;
-    } else {
-        i=0; // Stop the interval when openDoor reaches 100%
+function updateProgress(button){
+    // * Define iterator variable
+    let i = 0;
+    
+    // * Define graphic update logic
+    return function (interval){
+        if (i <= 100) {
+            button.style.width = i + '%';
+            i++;
+        } else {
+            clearInterval(interval)
+            i=0;
+        }
     }
 }
+
 // * Define what happens when the open button is pressed
 function openButtonPressedEventHandler() {
     // Asynchronously send open button event
     fetchURL('/openButton/click')
     setPressedStyle(openButton)
 
-    // * Run updateBattery every {secondArgument ms}
-    setInterval(updateOpenProgress, 100);
+    // Create a new instance of updateProgress for openButton
+    const openButtonUpdateProgress = updateProgress(openButtonProgress);
+
+    openInterval = setInterval(()=>{openButtonUpdateProgress(openInterval);}, 100);
 }
 
 // * Define what happens when the open button is released
@@ -60,11 +69,16 @@ function closeButtonPressedEventHandler() {
     // Asynchronously send close button event
     fetchURL('/closeButton/click')
     setPressedStyle(closeButton)
+    
+    // Create a new instance of updateProgress for closeButton
+    const closeButtonUpdateProgress = updateProgress(closeButtonProgress);
+
+    closeInterval = setInterval(()=>{closeButtonUpdateProgress(closeInterval);}, 100);
 }
 
 // * Define what happens when the close button is released
 function closeButtonReleasedEventHandler() {
-    setReleasedStyle(closeButton)
+    // setReleasedStyle(closeButton)
 }
 
 // * Define what happens when the stop button is pressed

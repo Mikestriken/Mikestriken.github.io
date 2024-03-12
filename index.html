@@ -18,7 +18,11 @@
 
 <body>
     <header>
-
+        <img id="EPRILogo" src="./Assets/EPRI-logo.png" alt="EPRI Icon">
+        <section>
+            <button class="button" id="terminalButton">Terminal</button>
+            <button class="button" id="rebootButton">Reboot</button>
+        </section>
     </header>
     <main class="container">
         <section id="spotContainer">
@@ -26,8 +30,11 @@
                 <h1>Spot</h1>
                 
                 <article id="battery">
-                    <figure class="figure" id="batteryGraphicBackground">
-                        <figure class="batteryGraphic figure" id="batteryGraphicOutput"></figure>
+                    <figure class="backgroundOverlayContainer">
+                        <img class="backgroundOverlay" src="./Assets/battery.png" alt="Battery Background">
+                        <figure class="progressBarContainer" id="batteryGraphicBackground">
+                            <figure class="batteryGraphic figure progressBar" id="batteryGraphicOutput"></figure>
+                        </figure>
                     </figure>
                     <figcaption id="batteryPercentageOutput"></figcaption>
                 </article>
@@ -99,11 +106,13 @@
                 
                 <button class="input button" id="stopDoorButton">HALT DOOR</button>
 
-                <button class="button" id="openDoorButton">
-                    <figure class="input button" id="openDoorProgress">Open Door</figure>
+                <button class="button progressBarContainer" id="openDoorButton">
+                    <span class="input button progressBarOverlay">Open Door</span>
+                    <figure class="input button progressBar" id="openDoorProgress"></figure>
                 </button>
-                <button class="input button" id="closeDoorButton">
-                    <figure id="closeDoorProgress">Close Door</figure>
+                <button class="button progressBarContainer" id="closeDoorButton">
+                    <span class="input button progressBarOverlay">Close Door</span>
+                    <figure class="input button progressBar" id="closeDoorProgress"></figure>
                 </button>
     
                 <article id="internalTemperature">

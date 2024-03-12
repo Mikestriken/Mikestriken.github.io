@@ -30,6 +30,49 @@ h1 {
     font-size: 3rem;
 }
 
+.backgroundOverlayContainer{
+    position: relative;
+    display: inline-block;
+}
+
+.backgroundOverlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 12rem;
+    z-index: 0;
+
+}
+
+.progressBar {
+    /* Grid Style */
+    display: block;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    
+    min-width: 0%;
+    max-width: 100%;
+    margin: 0rem;
+
+    z-index: 0;
+}
+
+.progressBarOverlay{
+    position: relative;
+    background-color: transparent;
+    z-index: 1;
+}
+
+.progressBarContainer{
+    position: relative;
+    overflow: hidden;
+}
+
 .label {
     font-size: 2.5rem;
 }
@@ -49,7 +92,7 @@ h1 {
     min-width: 5rem;
 }
 
-.output:not(.figure) {
+.output {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,6 +113,11 @@ h1 {
     background-color: hsl(228, 66%, 47%);
 }
 
+.button .progressBarOverlay {
+    background-color: transparent;
+    pointer-events: none;
+}
+
 .button:active:not(#openDoorButton, #closeDoorButton, #stopDoorButton) {
     /* Styling */
     background-color: hsl(228, 66%, 70%);
@@ -80,6 +128,21 @@ header {
     height: 10vh;
     width: 100vw;
     background-color: #1c3596;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#EPRILogo {
+    /* justify-self: left; */
+    margin-left: 5rem;
+    height: 6vh;
+}
+
+#rebootButton, #terminalButton {
+    /* justify-self: right; */
+    margin-right: 3rem;
 }
 
                                         /** Main Container **/
@@ -189,12 +252,9 @@ section > section {
     background-color: hsl(0, 100%, 50%);
 }
 
-#stopDoorButton:active {
-    /* background-color: hsl(0, 100%, 30%); */
-    
-}
+#openDoorButton { grid-area: open;}
 
-#openDoorButton { grid-area: open; font-size: 4rem;}
+#openDoorButton * { font-size: 4rem;}
 
 #openDoorProgress, #closeDoorProgress {
     /* text-align: center; */
@@ -203,14 +263,21 @@ section > section {
     /* Grid Style */
     height: 100%;
     display: block;
-    width: 10%;
     
     min-width: 0%;
     max-width: 100%;
     margin: 0rem;
+
+    border-radius: 0;
 }
 
-#closeDoorButton{ grid-area: close; font-size: 4rem;}
+#closeDoorProgress {
+    width: 1%;
+}
+
+#closeDoorButton{ grid-area: close;}
+
+#closeDoorButton * {font-size: 4rem;}
 
 #internalTemperature, #powerStatus {
     display: flex;
@@ -225,12 +292,12 @@ section > section {
 #powerStatus { grid-area: powerStatus; }
 
 
-/** Spot Section **/
+                                                /** Spot Section **/
 #spot {
     /* Grid Style */
     grid-area: spot;
     display: grid;
-    grid-template-rows: repeat(2, 5rem);
+    grid-template-rows: 5rem 6rem
 
     /* Sizing */
     /* min-width: 24rem; */
@@ -243,16 +310,25 @@ section > section {
     display: flex;
     justify-content: center;
     margin: 1rem 0rem;
+
+    align-items: center;
 }
 
 /** Battery **/
 #batteryGraphicBackground {
     /* Grid Style */
     display: inline-grid;
+
+    position: absolute;
+
     
     /* Coloring */
     border: .1rem solid black;
     background-color: hsl(0, 0%, 95%);
+    
+    height: 80%;
+    
+
     
     /* Battery Style */
     border: 1;
@@ -260,18 +336,14 @@ section > section {
     min-height: 2rem;
     margin: 0rem;
 }
-#batteryGraphicOutput {
-    /* Grid Style */
-    display: block;
-    width: 50%;
-    
-    min-width: 0%;
-    max-width: 100%;
-    margin: 0rem;
-}
+
+#batteryGraphicOutput {}
+
 #batteryPercentageOutput {
     margin: 0rem 1rem;
     width: 4rem;
+    position: relative;
+    left: 2rem;
     display: flex;
     width: 10;
     justify-content: center;
