@@ -30,21 +30,6 @@ h1 {
     font-size: 3rem;
 }
 
-.backgroundOverlayContainer{
-    position: relative;
-    display: inline-block;
-}
-
-.backgroundOverlay{
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 12rem;
-    z-index: 0;
-
-}
-
 .progressBar {
     /* Grid Style */
     display: block;
@@ -215,12 +200,9 @@ section > section {
                          "fanSpeed stopDoor close"
                          "fanStop stopDoor close"
                          "indoorTemp indoorTemp powerStatus";
-                         
-                         
-                         
-                        }
+}
 
-                        #dockingStation > * {
+#dockingStation > * {
     /* border: 1px solid red; */
 }
 
@@ -317,10 +299,6 @@ section > section {
 /** Battery **/
 #batteryGraphicBackground {
     /* Grid Style */
-    display: inline-grid;
-
-    position: absolute;
-
     
     /* Coloring */
     border: .1rem solid black;
@@ -342,10 +320,7 @@ section > section {
 #batteryPercentageOutput {
     margin: 0rem 1rem;
     width: 4rem;
-    position: relative;
-    left: 2rem;
     display: flex;
-    width: 10;
     justify-content: center;
     align-items: center;
 }
