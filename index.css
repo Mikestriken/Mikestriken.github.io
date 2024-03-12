@@ -31,25 +31,20 @@ h1 {
 }
 
 .backgroundContainer{
+    /* border: 1px solid red; */
     height: 100%;
+    width: 15rem;
     margin: 0rem;
-
-    border: 1px solid red;
-
-    position: relative;
 
     display: flex;
     align-items: center;
 
     justify-content: center;
-}
 
-.backgroundOverlay {
-    position: absolute;
-
-    height: 100%;
-
-    z-index: 0;
+    background-image: url("./Assets/battery.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: .9rem 0rem;
 }
 
 .progressBar {
@@ -327,6 +322,7 @@ section > section {
     background-color: hsl(0, 0%, 95%);
     
     height: 80%;
+    width: 12rem;
     
 
     
@@ -340,7 +336,7 @@ section > section {
 #batteryGraphicOutput {}
 
 #batteryPercentageOutput {
-    margin: 0rem 3rem;
+    margin: 0rem 1rem;
     width: 4rem;
     display: flex;
     justify-content: center;
