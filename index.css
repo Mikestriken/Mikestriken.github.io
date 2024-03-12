@@ -30,6 +30,28 @@ h1 {
     font-size: 3rem;
 }
 
+.backgroundContainer{
+    height: 100%;
+    margin: 0rem;
+
+    border: 1px solid red;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+}
+
+.backgroundOverlay {
+    position: absolute;
+
+    height: 100%;
+
+    z-index: 0;
+}
+
 .progressBar {
     /* Grid Style */
     display: block;
@@ -318,7 +340,7 @@ section > section {
 #batteryGraphicOutput {}
 
 #batteryPercentageOutput {
-    margin: 0rem 1rem;
+    margin: 0rem 3rem;
     width: 4rem;
     display: flex;
     justify-content: center;
