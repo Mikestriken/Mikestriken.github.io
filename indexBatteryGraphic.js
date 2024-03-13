@@ -10,7 +10,7 @@ const battery = document.getElementById("batteryGraphicOutput");
     function updateBattery() {
         if (i <= 100) {
             battery.style.width = i + '%';
-            batteryPercentage.innerHTML = i + '%';
+            batteryPercentage.innerHTML = '⚡' + i + '%';
             if (i === 100) {
                 battery.style.backgroundColor = "lime";
             } else {

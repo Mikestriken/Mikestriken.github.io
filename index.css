@@ -292,7 +292,21 @@ section > section {
 
 #internalTemperature{ grid-area: indoorTemp; }
 
-#powerStatus { grid-area: powerStatus; }
+#powerStatus { grid-area: powerStatus; display: flex; align-items: center; justify-content: center;}
+
+#powerStatusOutput{
+    width: 10rem;
+    margin: 0rem 1rem;
+    height: 100%;
+
+    background-color: red;
+
+    border: .3rem solid black;
+    /* background-image: url(./Assets/connected.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0rem .5rem; */
+}
 
 
                                                 /** Spot Section **/
@@ -341,7 +355,7 @@ section > section {
 
 #batteryPercentageOutput {
     margin: 0rem 1rem;
-    width: 4rem;
+    width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
